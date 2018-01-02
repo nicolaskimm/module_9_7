@@ -44,5 +44,45 @@ setGameElements();
 
 function setGamePoints() {
         playerPointsElem.innerHTML = player.score;
-        computerPointsElem.innerHTML = computer.score;};
+        computerPointsElem.innerHTML = computer.score;}
+
+var playerPointsElem = document.getElementById('js-playerPoints'),
+    playerNameElem = document.getElementById('js-playerName'),
+    computerPointsElem = document.getElementById('js-computerPoints');
+
+function newGame() {
+  player.name = prompt('Please enter your name');
+  if (player.name) {
+    player.score = computer.score = 0;
+    gameState = 'started';
+    setGameElements();
+
+    playerNameElem.innerHTML = player.name;
+    
+    setGamePoints();
+  }
+};
+
+function playerPick(playerPick) {
+    console.log(playerPick);
+};
+
+function getComputerPick() {
+    var possiblePicks = ['rock', 'paper', 'scissors'];
+    return possiblePicks[Math.floor(Math.random()*3)];
+};
+
+var playerPickElem = document.getElementById('js-playerPick'),
+    computerPickElem = document.getElementById('js-computerPick'),
+    playerResultElem = document.getElementById('js-playerResult'),
+    computerResultElem = document.getElementById('js-computerResult');
+
+function playerPick(playerPick) {
+    var computerPick = getComputerPick();
+
+    playerPickElem.innerHTML = playerPick;
+    computerPickElem.innerHTML = computerPick;
+    
+    checkRoundWinner(playerPick, computerPick);
+};
 
